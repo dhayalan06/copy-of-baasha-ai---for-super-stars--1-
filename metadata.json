@@ -1,0 +1,7 @@
+{
+  "name": "Copy of Baasha AI - For Super Stars",
+  "description": "A premium language learning and predictive translation app that teaches you how to speak confidently with 'Super Star' style.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
