@@ -60,7 +60,15 @@ Minimalist, encouraging, and precise.
 `;
 
 // Initialize GoogleGenAI with API_KEY from environment directly
-const getAIClient = () => new GoogleGenAI({ apiKey: process.env.API_KEY });
+// Initialize GoogleGenAI with API_KEY from environment
+// Using VITE_ prefix standard for client-side access
+const getAIClient = () => {
+  const apiKey = import.meta.env.VITE_GEMINI_API_KEY || process.env.GEMINI_API_KEY || process.env.API_KEY;
+  if (!apiKey) {
+    throw new Error("API Key is missing. Ensure VITE_GEMINI_API_KEY is set in .env.local");
+  }
+  return new GoogleGenAI({ apiKey });
+};
 
 export const predictIntent = async (
   input: string,
