@@ -34,8 +34,9 @@ const App: React.FC = () => {
       try {
         const result = await predictIntent(inputText, sourceLang);
         setSuggestions(result.suggestions);
-      } catch (error) {
+      } catch (error: any) {
         console.error("Prediction failed:", error);
+        alert(`Prediction Error: ${error.message || JSON.stringify(error)}`);
       } finally {
         setIsLoading(false);
       }
@@ -55,8 +56,9 @@ const App: React.FC = () => {
       if (result) {
         setTranslation(result.translation);
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error("Translation failed:", error);
+      alert(`Translation Error: ${error.message || JSON.stringify(error)}`);
     } finally {
       setIsTranslating(false);
     }
@@ -70,8 +72,9 @@ const App: React.FC = () => {
       if (result) {
         setTranslation(result.translation);
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error("Manual Translation failed:", error);
+      alert(`Manual Translation Error: ${error.message || JSON.stringify(error)}`);
     } finally {
       setIsTranslating(false);
     }
