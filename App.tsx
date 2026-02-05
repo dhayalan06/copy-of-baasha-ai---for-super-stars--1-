@@ -1,10 +1,10 @@
 
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { 
-  Language, 
-  SUPPORTED_LANGUAGES, 
-  Suggestion, 
-  TranslationResult 
+import {
+  Language,
+  SUPPORTED_LANGUAGES,
+  Suggestion,
+  TranslationResult
 } from './types';
 import { predictIntent, translateSentence } from './geminiService';
 
@@ -16,7 +16,7 @@ const App: React.FC = () => {
   const [translation, setTranslation] = useState<TranslationResult | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isTranslating, setIsTranslating] = useState(false);
-  
+
   // Use ReturnType<typeof setTimeout> to avoid NodeJS namespace dependency in browser environment
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -100,7 +100,7 @@ const App: React.FC = () => {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
           <div className="relative group w-full sm:w-48">
             <label className="text-[10px] uppercase tracking-widest text-gray-500 absolute -top-4 left-1">Source</label>
-            <select 
+            <select
               value={sourceLang}
               onChange={(e) => setSourceLang(e.target.value as Language)}
               className="w-full bg-[#1e1e1e] border-b-2 border-transparent focus:border-[#FFD700] text-white py-3 px-4 rounded-lg appearance-none transition-all cursor-pointer outline-none hover:bg-[#2a2a2a]"
@@ -112,12 +112,12 @@ const App: React.FC = () => {
           </div>
 
           <div className="hidden sm:block text-[#FFD700] opacity-50">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6" /></svg>
           </div>
 
           <div className="relative group w-full sm:w-48">
             <label className="text-[10px] uppercase tracking-widest text-gray-500 absolute -top-4 left-1">Target</label>
-            <select 
+            <select
               value={targetLang}
               onChange={(e) => setTargetLang(e.target.value as Language)}
               className="w-full bg-[#1e1e1e] border-b-2 border-transparent focus:border-[#FFD700] text-white py-3 px-4 rounded-lg appearance-none transition-all cursor-pointer outline-none hover:bg-[#2a2a2a]"
@@ -137,18 +137,18 @@ const App: React.FC = () => {
             placeholder="Type what you want to say..."
             className="w-full h-40 bg-transparent border-2 border-gray-800 focus:border-[#FFD700] rounded-2xl p-6 text-2xl font-light outline-none transition-all resize-none placeholder:text-gray-700"
           />
-          
+
           <div className="absolute bottom-4 right-4 flex gap-2">
             {inputText && (
-              <button 
+              <button
                 onClick={clearApp}
                 className="p-2 text-gray-500 hover:text-white transition-colors"
                 title="Clear"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 6h18" /><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" /><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" /></svg>
               </button>
             )}
-            <button 
+            <button
               onClick={handleManualTranslate}
               disabled={isTranslating || !inputText}
               className="bg-[#FFD700] text-black px-6 py-2 rounded-full font-bold text-sm uppercase tracking-wider hover:bg-[#e6c200] disabled:opacity-50 disabled:cursor-not-allowed transition-all"

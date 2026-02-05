@@ -1,15 +1,23 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-@layer base {
-  body {
-    @apply bg-dark-900 text-white font-sans;
-  }
+@theme {
+  --color-gold-400: #FFD700;
+  --color-gold-500: #FFC000;
+  --color-gold-600: #D4AF37;
+
+  --color-dark-900: #121212;
+  --color-dark-800: #1e1e1e;
+  --color-dark-700: #2a2a2a;
+
+  --font-sans: 'Noto Sans', sans-serif;
 }
 
 @layer utilities {
   .text-gradient {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-gold-400 to-gold-600;
   }
+}
+
+body {
+  @apply bg-dark-900 text-white font-sans;
 }
